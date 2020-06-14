@@ -26,7 +26,7 @@ type Data struct {
 	IMDBID string `json:"imdbID"`
 	Type   string `json:"Type"`
 	Poster string `json:"Poster"`
-}g
+}
 
 func decodeSearchRequest(ctx context.Context, r *http.Request) (interface{}, error) {
 	reqName, ok := r.URL.Query()["search"]
