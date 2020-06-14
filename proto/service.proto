@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package proto;
+
+message Request {
+  string name = 1;
+  string page = 2;
+}
+
+message Response {
+    repeated Search search = 1;
+    string totalResults = 2;
+    string response = 3;
+    string error = 4;
+}
+
+message Search {
+  string title = 1;
+  string year = 2;
+  string imdbid = 3;
+  string type = 4;
+  string poster = 5;
+}
+
+service AddService {
+  rpc SearchMovie(Request) returns (Response);
+}

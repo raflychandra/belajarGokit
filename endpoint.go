@@ -1,6 +1,7 @@
 package belajarGoKit
 
 import (
+	"belajarGoKit/proto"
 	"context"
 	"github.com/go-kit/kit/endpoint"
 )
@@ -9,10 +10,14 @@ type Endpoints struct {
 	SearchEndpoint   endpoint.Endpoint
 }
 
-func ControllerSearch(srv Service) endpoint.Endpoint {
+func ControllerSearch(srv proto.AddServiceClient) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(searchRequest)
-		b, err := srv.Search(ctx, req.Name, req.Page)
+		payload := &proto.Request{
+			Name: req.Name,
+			Page: req.Page,
+		}
+		b, err := srv.SearchMovie(ctx, payload)
 		if err != nil {
 			return b, err
 		}
