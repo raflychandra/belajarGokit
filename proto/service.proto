@@ -23,5 +23,5 @@ message Search {
 }
 
 service AddService {
-  rpc SearchMovie(Request) returns (Response);
+  rpc SearchMovie(Request) returns (Response) {}
 }

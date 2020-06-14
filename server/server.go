@@ -13,7 +13,7 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
-type server struct{}
+type Server struct{}
 
 func main() {
 	listener, err := net.Listen("tcp", ":4040")
@@ -22,7 +22,7 @@ func main() {
 	}
 
 	srv := grpc.NewServer()
-	proto.RegisterAddServiceServer(srv, &server{})
+	proto.RegisterAddServiceServer(srv, &Server{})
 	reflection.Register(srv)
 
 	if e := srv.Serve(listener); e != nil {
@@ -31,7 +31,7 @@ func main() {
 
 }
 
-func (s *server) SearchMovie(ctx context.Context, request *proto.Request) (*proto.Response, error) {
+func (s *Server) SearchMovie(ctx context.Context, request *proto.Request) (*proto.Response, error) {
 	var search proto.Response
 	name, page := request.GetName(), request.GetPage()
 	str := fmt.Sprintf("http://omdbapi.com/?apikey=faf7e5bb&s=%s&page=%s", name, page)
