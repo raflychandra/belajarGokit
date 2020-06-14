@@ -1,4 +1,4 @@
-package belajarGoKit
+package server
 
 import (
 	"context"
@@ -17,12 +17,12 @@ func decodeSearchRequest(ctx context.Context, r *http.Request) (interface{}, err
 	reqName, ok := r.URL.Query()["search"]
 	if !ok || len(reqName[0]) < 1 {
 		log.Println("Url Param 'key' is missing")
-		return nil, errors.New("Url Param 'key' is missing")
+		return nil, errors.New("Url Param 'name' is missing")
 	}
 	reqPage, ok := r.URL.Query()["page"]
 	if !ok || len(reqPage[0]) < 1 {
 		log.Println("Url Param 'key' is missing")
-		return nil, errors.New("Url Param 'key' is missing")
+		return nil, errors.New("Url Param 'page' is missing")
 	}
 	var req searchRequest
 	req.Name = reqName[0]

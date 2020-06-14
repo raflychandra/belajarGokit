@@ -1,8 +1,8 @@
 package main
 
 import (
-	"belajarGoKit"
 	"belajarGoKit/proto"
+	"belajarGoKit/server/server"
 	"context"
 	"flag"
 	"fmt"
@@ -35,14 +35,14 @@ func main() {
 	}()
 
 	//mapping endpoints
-	endpoints := belajarGoKit.Endpoints{
-		SearchEndpoint:   belajarGoKit.ControllerSearch(client),
+	endpoints := server.Endpoints{
+		SearchEndpoint: server.ControllerSearch(client),
 	}
 
 	//http server
 	go func() {
 		log.Println("is listening on port:", *httpAddr)
-		handler := belajarGoKit.NewHTTPServer(ctx, endpoints)
+		handler := server.NewHTTPServer(ctx, endpoints)
 		errChan <- http.ListenAndServe(*httpAddr, handler)
 	}()
 

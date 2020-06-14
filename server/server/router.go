@@ -1,4 +1,4 @@
-package belajarGoKit
+package server
 
 import (
 	"context"
